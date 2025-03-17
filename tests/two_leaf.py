@@ -14,7 +14,9 @@ def test_2_leaf_trees(input_size: int):
     is analytically determined
     """
     count_trees = 0
-    for _ in tree_gen(input_size,2,2):
+    for cur_tree in tree_gen(input_size,2,2):
+        assert cur_tree.num_nodes == input_size
+        assert cur_tree.num_leaves == 2
         count_trees += 1
     expected_count = sum((p-1)//2 for p in range(3,input_size+1))
     assert count_trees == expected_count

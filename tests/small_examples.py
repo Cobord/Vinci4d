@@ -14,6 +14,8 @@ def test_1_1():
         [0],
     ]
     for cur_tree in tree_gen(1,1,1):
+        assert cur_tree.num_nodes == 1
+        assert cur_tree.num_leaves == 1
         cur_level_sequence = cur_tree.level_sequence()
         assert cur_level_sequence in expected_level_sequences
         expected_level_sequences.remove(cur_level_sequence)
@@ -30,6 +32,8 @@ def test_2_1():
         [0,1],
     ]
     for cur_tree in tree_gen(2,1,1):
+        assert cur_tree.num_nodes == 2
+        assert cur_tree.num_leaves == 1
         cur_level_sequence = cur_tree.level_sequence()
         assert cur_level_sequence in expected_level_sequences
         expected_level_sequences.remove(cur_level_sequence)
@@ -46,6 +50,8 @@ def test_3_1():
         [0,1,2],
     ]
     for cur_tree in tree_gen(3,1,1):
+        assert cur_tree.num_nodes == 3
+        assert cur_tree.num_leaves == 1
         cur_level_sequence = cur_tree.level_sequence()
         assert cur_level_sequence in expected_level_sequences
         expected_level_sequences.remove(cur_level_sequence)
@@ -62,6 +68,8 @@ def test_3_2():
         [0,1,1],
     ]
     for cur_tree in tree_gen(3,2,2):
+        assert cur_tree.num_nodes == 3
+        assert cur_tree.num_leaves == 2
         cur_level_sequence = cur_tree.level_sequence()
         assert cur_level_sequence in expected_level_sequences
         expected_level_sequences.remove(cur_level_sequence)
@@ -79,6 +87,8 @@ def test_5_1():
         [0,1,2,3,4],
     ]
     for cur_tree in tree_gen(5,1,1):
+        assert cur_tree.num_nodes == 5
+        assert cur_tree.num_leaves == 1
         cur_level_sequence = cur_tree.level_sequence()
         assert cur_level_sequence in expected_level_sequences
         expected_level_sequences.remove(cur_level_sequence)
@@ -99,6 +109,8 @@ def test_5_2():
         [0,1,2,1,2],
     ]
     for cur_tree in tree_gen(5,2,2):
+        assert cur_tree.num_nodes == 5
+        assert cur_tree.num_leaves == 2
         cur_level_sequence = cur_tree.level_sequence()
         assert cur_level_sequence in expected_level_sequences
         expected_level_sequences.remove(cur_level_sequence)
@@ -118,6 +130,8 @@ def test_5_3():
         [0,1,2,1,1],
     ]
     for cur_tree in tree_gen(5,3,3):
+        assert cur_tree.num_nodes == 5
+        assert cur_tree.num_leaves == 3
         cur_level_sequence = cur_tree.level_sequence()
         assert cur_level_sequence in expected_level_sequences
         expected_level_sequences.remove(cur_level_sequence)
@@ -134,6 +148,8 @@ def test_5_4():
         [0,1,1,1,1],
     ]
     for cur_tree in tree_gen(5,4,4):
+        assert cur_tree.num_nodes == 5
+        assert cur_tree.num_leaves == 4
         cur_level_sequence = cur_tree.level_sequence()
         assert cur_level_sequence in expected_level_sequences
         expected_level_sequences.remove(cur_level_sequence)
@@ -159,6 +175,8 @@ def test_5_n():
     ]
     expected_count = len(expected_level_sequences)
     for cur_tree in tree_gen(5,1,4):
+        assert cur_tree.num_nodes == 5
+        assert 1 <= cur_tree.num_leaves <= 4
         cur_level_sequence = cur_tree.level_sequence()
         assert cur_level_sequence in expected_level_sequences
         expected_level_sequences.remove(cur_level_sequence)
@@ -185,6 +203,8 @@ def test_5_any():
     ]
     expected_count = len(expected_level_sequences)
     for cur_tree in tree_gen(5,0,100):
+        assert cur_tree.num_nodes == 5
+        assert 0 <= cur_tree.num_leaves <= 100
         cur_level_sequence = cur_tree.level_sequence()
         assert cur_level_sequence in expected_level_sequences
         expected_level_sequences.remove(cur_level_sequence)
@@ -204,6 +224,8 @@ def test_n_3():
     expected_counts = [0, 0, 0, 0, 1, 3, 8, 18, 35, 62, 103, 161, 241, 348, 487, 664, 886]
     for size,expected_count in enumerate(expected_counts):
         count_this_size = 0
-        for _ in tree_gen(size, 3,3):
+        for cur_tree in tree_gen(size, 3,3):
+            assert cur_tree.num_nodes == size
+            assert cur_tree.num_leaves == 3
             count_this_size += 1
         assert count_this_size == expected_count

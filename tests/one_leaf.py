@@ -16,5 +16,7 @@ def test_1_leaf_trees(input_size: int):
     count_trees = 0
     for cur_tree in tree_gen(input_size,1,1):
         count_trees += 1
+        assert cur_tree.num_nodes == input_size
+        assert cur_tree.num_leaves == 1
         assert cur_tree.level_sequence() == list(range(input_size))
     assert count_trees == (1 if input_size>0 else 0)

@@ -21,7 +21,10 @@ class OrderedTree:
             )
         self.children = children
         self.num_nodes = sum(child.num_nodes for child in children) + 1
-        self.num_leaves = sum(child.num_leaves for child in children) + 1
+        if len(children) == 0:
+            self.num_leaves = 1
+        else:
+            self.num_leaves = sum(child.num_leaves for child in children)
 
     @staticmethod
     def degenerate() -> OrderedTree:

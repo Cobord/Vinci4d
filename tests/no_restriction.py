@@ -22,6 +22,8 @@ def test_no_leaf_restriction_small(input_size: int):
     level_sequences_restricted : Set[Tuple[int]] = set()
     for cur_tree in tree_gen(input_size,1,input_size):
         count_trees_restricted += 1
+        assert cur_tree.num_nodes == input_size
+        assert 1 <= cur_tree.num_leaves <= input_size
         level_sequences_restricted.add(tuple(cur_tree.level_sequence()))
     count_trees_unrestricted = 0
     level_sequences_unrestricted : Set[Tuple[int]] = set()
@@ -41,6 +43,8 @@ def test_no_leaf_restriction(input_size: int):
     count_trees_restricted = 0
     level_sequences_restricted : Set[Tuple[int]] = set()
     for cur_tree in tree_gen(input_size,1,input_size):
+        assert cur_tree.num_nodes == input_size
+        assert 1 <= cur_tree.num_leaves <= input_size
         count_trees_restricted += 1
         cur_level_sequence = cur_tree.level_sequence()
         if tuple(cur_level_sequence) in level_sequences_restricted:

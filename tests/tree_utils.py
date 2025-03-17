@@ -12,20 +12,28 @@ def test_simple_trees():
     """
     tree_test = OrderedTree.degenerate()
     assert str(tree_test) == "()"
+    assert tree_test.num_nodes == 1
+    assert tree_test.num_leaves == 1
     tree_test = OrderedTree([
         OrderedTree.degenerate(),
         OrderedTree.degenerate(),
         OrderedTree.degenerate()], False)
+    assert tree_test.num_nodes == 4
+    assert tree_test.num_leaves == 3
     assert str(tree_test) == "(()()())"
     assert tree_test.level_sequence() == [0,1,1,1]
     assert OrderedTree.from_level_sequence([0,1,1,1]).level_sequence() == [0,1,1,1]
     tree_test = OrderedTree([OrderedTree.degenerate(), tree_test], False)
+    assert tree_test.num_nodes == 6
+    assert tree_test.num_leaves == 4
     assert str(tree_test) == "(()(()()()))"
     assert tree_test.level_sequence() == [0,1,1,2,2,2]
     assert OrderedTree.from_level_sequence([0,1,1,2,2,2]).level_sequence() == [0,1,1,2,2,2]
     cur_str = "()"
     for idx in range(2,10):
         tree_test = OrderedTree.degenerate_path(idx)
+        assert tree_test.num_nodes == idx
+        assert tree_test.num_leaves == 1
         assert tree_test.level_sequence() == list(range(idx))
         assert str(tree_test) == f"({cur_str})"
         cur_str = f"({cur_str})"
