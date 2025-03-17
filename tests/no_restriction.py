@@ -2,6 +2,12 @@
 when the restriction on number of leaves is trivially satisfied
 the Beyer-Hedetniemi method which does not account for leaf counts
 at all should match with same produced trees
+
+the fact that we are confident of no repeats among the same equivalence
+class of ordered unlabelled rooted trees representing the same unordered version
+when generating them via Beyer-Hedetniemi and that `tree_gen` is giving those same
+numbers when given wide bounds on leaf counts lends evidence that there is no
+double counting within the same fiber of the forgetful map
 """
 
 from typing import List, Set, Tuple

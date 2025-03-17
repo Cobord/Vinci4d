@@ -28,12 +28,13 @@ def tree_gen(num_nodes: int,
         if min_num_leaves <= 1 <= max_num_leaves:
             yield OrderedTree.degenerate()
         return
-    if max_num_leaves == 1:
-        if min_num_leaves <= 1:
+    if max_num_leaves <= 1:
+        if min_num_leaves <= 1 <= max_num_leaves:
             yield OrderedTree.degenerate_path(num_nodes)
         return
     if _top_level:
         max_num_leaves = min(max_num_leaves, num_nodes-1)
+        min_num_leaves = max(min_num_leaves, 1)
     for (node_sizes,leaf_sizes) in nodes_and_leaves_counts_for_children(
         num_nodes-1, min_num_leaves,max_num_leaves):
         generators_for_child_trees = (
@@ -104,6 +105,9 @@ def leaf_partition(n: int,
     with order mattering
     there are given number of nodes per part
     and so the number of leaves for that part must fit within that constraint
+    
+    we are trying to mimic taking slices with this strategy
+    without copying over `nodes_per_child[which_child:]` as new `List[int]`
     """
     how_many_parts = len(nodes_per_child) - which_child
     if how_many_parts>n:
