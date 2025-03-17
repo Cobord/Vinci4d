@@ -17,7 +17,7 @@ When we have a system for choosing one representative from among these pre-image
 # Free Labelled Trees
 
 This is the version with the oldest history going back to Cayley. There are `(n+1)^(n-1)` such trees if there are `n+1` vertices.
-These are in explicit bijection functions with Prufer sequences, parking functions (see algebraic combinatorics and representation theory literature) among many others.
+These are in explicit bijection functions with [Prufer sequences](https://en.wikipedia.org/wiki/Pr%C3%BCfer_sequence), [parking functions](https://en.wikipedia.org/wiki/Parking_function) (see algebraic combinatorics and representation theory literature) among many others.
 
 # Beyer-Hedetniemi Algorithm
 
@@ -32,6 +32,8 @@ The restiction of leaves means we are exploring many possibilities that have too
 Instead we proceed by dividing up the prescribed number of nodes and range of leaves among an arbitrary number of children. For example if we are told `N=30` nodes and `M=3`, then we have `29` non-root nodes to divide up into some number of children and each child gets some nonzero amount of those `3` leaves. The generator which accomplishes this task is a combination of an iterator over [Integer Partitions](https://en.wikipedia.org/wiki/Integer_partition) and ordered partitions using some constraints in each. Suppose the division was into 3 children using `lambda = [14,13,2]` for the node counts on each child tree and `1` leaf each. Then on the recursive call we are producing all canonical trees with exactly those node counts and leaf counts in order to place them as each of the three children. Again they are produced with generators so the trees are all emitted as soon as they are constructed.
 
 There is repeated work with enumerating the trees on the same constraints at different places for example if we there were two children with `40` nodes and `17` leaves and `60` nodes and `23` leaves on the other. Then some descendant of the later examined the same case of `40` nodes and `17` leaves with the remaining `20` and `6` among the ancestors, siblings, cousins etc. This list of trees is recomputed which indicates area for performance left on the table.
+
+This does not have the same sort of Constant Amortized Time (CAT) behavior. It is significantly easier as well as the ease in adjusting to different requirements.
 
 ## Concerns
 
