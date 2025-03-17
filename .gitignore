@@ -1,0 +1,6 @@
+.hypothesis
+tree_enumeration/__pycache__
+tests/__pycache__
+venv
+.pytest_cache
+__pycache__
